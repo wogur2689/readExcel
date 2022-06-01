@@ -24,4 +24,8 @@ public class Restaurant extends Common implements Serializable {
 
     @Column(name = "cook", length = 50)
     private String cook; //요리(종류)
+
+    @ManyToOne
+    @JoinColumn(name = "menu_no")
+    private Menu menu; //하나의 식당에는 여러개의 음식이 있음.
 }
