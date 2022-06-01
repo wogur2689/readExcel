@@ -24,7 +24,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
     implementation 'org.apache.poi:poi:5.2.2'
-    implementation 'org.apache.poi:poi-oomxl:5.2.2'
+    implementation 'org.apache.poi:poi-ooxml:5.2.2'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
