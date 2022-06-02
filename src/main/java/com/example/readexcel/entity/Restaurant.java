@@ -1,6 +1,8 @@
 package com.example.readexcel.entity;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name = "restaurant")
 public class Restaurant extends Common implements Serializable {
     @Id
@@ -28,4 +31,13 @@ public class Restaurant extends Common implements Serializable {
     @ManyToOne
     @JoinColumn(name = "menu_no")
     private Menu menu; //하나의 식당에는 여러개의 음식이 있음.
+
+    @Builder
+    public Restaurant(Long id, String name, String address, String cook, Menu menu) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.cook = cook;
+        this.menu = menu;
+    }
 }
