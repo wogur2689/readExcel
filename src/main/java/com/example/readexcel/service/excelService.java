@@ -44,7 +44,7 @@ public class excelService {
         ExcelRead excelRead = new ExcelRead();
         List<String> data = excelRead.read();
 
-        log.info("### 데이터 사이즈" + data.size());
+        log.info("### 데이터 시작 ###");
         log.info("### 데이터 갯수 : {} ###", data.size());
         for(int i = 0; i < data.size(); i++) {
             for(int j = 0; j < 4; j++) {
@@ -53,6 +53,9 @@ public class excelService {
                         .name(data.get(j))
                         .address(data.get(j))
                         .cook(data.get(j))
+                        .opening_hours(data.get(j))
+                        .remark(data.get(j))
+                        .phoneNumber(data.get(j))
                         .build();
                 restaurantRepository.save(restaurant);
             }
