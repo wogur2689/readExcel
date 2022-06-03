@@ -8,7 +8,9 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "menu")
 public class Menu extends Common implements Serializable {
     @Id
@@ -20,11 +22,4 @@ public class Menu extends Common implements Serializable {
 
     @Column(name = "food_amount", columnDefinition = "default 0")
     private Long foodAmount; //가격
-
-    @Builder
-    public Menu(Long id, String food, Long foodAmount) {
-        this.id = id;
-        this.food = food;
-        this.foodAmount = foodAmount;
-    }
 }
