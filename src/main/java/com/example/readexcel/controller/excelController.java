@@ -3,7 +3,7 @@ package com.example.readexcel.controller;
 import com.example.readexcel.service.excelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -17,13 +17,13 @@ public class excelController {
     private excelService excelService;
 
     /* 핑 테스트 */
-    @PostMapping("/ping")
+    @GetMapping("/ping")
     public void Test() {
         log.info("ping~!");
     }
 
     /* 메뉴 데이터 저장 */
-    @PostMapping("/menu")
+    @GetMapping("/menu")
     public void Menu() {
         try {
             excelService.menuData();
@@ -34,7 +34,7 @@ public class excelController {
     }
 
     /* 레스토랑 데이터 저장 */
-    @PostMapping("/restaurant")
+    @GetMapping("/restaurant")
     public void RestaurantData() {
         try {
             excelService.restaurantData();
