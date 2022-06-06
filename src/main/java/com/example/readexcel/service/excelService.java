@@ -22,7 +22,7 @@ public class excelService {
     @Resource
     private RestaurantRepository restaurantRepository;
 
-    public void menuData() throws Exception {
+    public void menuData() {
         ExcelRead excelRead = new ExcelRead();
         List<String> exceldata = excelRead.read();
         List<String> saveData = new ArrayList<>();
@@ -50,7 +50,7 @@ public class excelService {
         log.info("### 데이터 저장 완료 ###");
     }
 
-    public void restaurantData() throws Exception {
+    public void restaurantData() {
         ExcelRead excelRead = new ExcelRead();
         List<String> exceldata = excelRead.read();
         List<String> saveData = new ArrayList<>();

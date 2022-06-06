@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelRead {
 
-    public List<String> read() throws Exception {
+    public List<String> read() {
         List<String> data = new ArrayList<>();
         try {
             // 경로에 있는 파일을 읽기
