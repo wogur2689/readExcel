@@ -24,20 +24,29 @@ public class excelService {
 
     public void menuData() throws Exception {
         ExcelRead excelRead = new ExcelRead();
-        List<String> data = excelRead.read();
+        List<String> exceldata = excelRead.read();
+        List<String> saveData = new ArrayList<>();
+        Long j = 1L; //id
 
         log.info("### 데이터 시작 ###");
-        log.info("### 데이터 갯수 : {} ###", data.size());
-        for(int i = 0; i < data.size(); i++) {
-            for(int j = 0; j < 2; j++) {
+        log.info("### 데이터 갯수 : {} ###", exceldata.size());
+
+        for(int i = 0; i < exceldata.size(); i++) {
+            saveData.add(exceldata.get(i));
+
+            //레스토랑의 열개수만큼 데이터가 채워지면 데이터 저장
+            if(saveData.size() == 2) {
                 Menu menu = Menu.builder()
-                        .id((long) i)
-                        .food(data.get(j))
-                        .foodAmount(Long.valueOf(data.get(j)))
+                        .id(j)
+                        .food(saveData.get(0))
+                        .foodAmount(Long.valueOf(saveData.get(1)))
                         .build();
                 menuRepository.save(menu);
+                j++; //id값 증가
+                saveData.clear(); //리스트 초기화
             }
         }
+
         log.info("### 데이터 저장 완료 ###");
     }
 
