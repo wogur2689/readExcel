@@ -133,7 +133,7 @@ public class excelService {
             saveData.add(exceldata.get(i));
 
             //열개수만큼 데이터가 채워지면 데이터 저장
-            if(saveData.size() == 6) {
+            if(saveData.size() == 3) {
                 FoodAndPlayDetail foodAndPlayDetail = FoodAndPlayDetail.builder()
                         .id(j)
                         .foodId(saveData.get(0))
