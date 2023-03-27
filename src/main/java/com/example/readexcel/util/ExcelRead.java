@@ -58,7 +58,6 @@ public class ExcelRead {
                     }
                 }
             }
-            System.out.println("안녕");
         } catch(Exception e) {
             e.printStackTrace();
         }

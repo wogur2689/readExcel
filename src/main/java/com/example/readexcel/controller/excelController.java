@@ -1,10 +1,12 @@
 package com.example.readexcel.controller;
 
+import com.example.readexcel.enums.ParamCode;
 import com.example.readexcel.service.excelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 
@@ -22,26 +24,15 @@ public class excelController {
         log.info("ping~!");
     }
 
-    /* 메뉴 데이터 저장 */
-    @GetMapping("/menu")
-    public void Menu() {
-        try {
-            excelService.menuData();
-            log.info("메뉴 저장완료!");
-        } catch (Exception e) {
-            log.error("### 오류발생 : {} ###", e);
-        }
-    }
-
-    /* 레스토랑 데이터 저장 */
-    @GetMapping("/restaurant")
-    public void RestaurantData() {
-        try {
-            excelService.restaurantData();
-            log.info("레스토랑 저장완료!");
-        } catch (Exception e) {
-            log.error("### 오류발생 : {} ###", e);
-        }
+    /* 데이터 저장 */
+    @GetMapping("/{value}")
+    public void Menu(@RequestParam String param) {
+        //해당 값에 따른 데이터 저장
+        if(param.equals(ParamCode.CODE_MENU.getCode())) excelService.menuData(); //메뉴
+        if(param.equals(ParamCode.CODE_RESTAURANT.getCode())) excelService.restaurantData(); //레스토랑
+        if(param.equals(ParamCode.CODE_FOODANDPLAY.getCode())) excelService.foodAndPlayData(); //먹거리 & 놀거리
+        if(param.equals(ParamCode.CODE_FOODANDPLAYDETAIL.getCode())) excelService.foodAndPlayDetailData(); //먹거리 & 놀거리 상세
+        //if(param.equals(ParamCode.CODE_SCHOOLTIP.getCode())) excelService.menuData(); //꿀팁
     }
 
 }

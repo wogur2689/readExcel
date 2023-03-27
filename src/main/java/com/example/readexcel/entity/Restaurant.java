@@ -6,12 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Setter
 @Getter
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "restaurant")
 public class Restaurant extends Common implements Serializable {
     @Id
@@ -39,4 +36,16 @@ public class Restaurant extends Common implements Serializable {
     @ManyToOne
     @JoinColumn(name = "menu_no")
     private Menu menu; //하나의 식당에는 여러개의 음식이 있음.
+
+    @Builder
+    public Restaurant(Long id, String name, String address, String cook, String opening_hours, String remark, String phoneNumber, Menu menu) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.cook = cook;
+        this.opening_hours = opening_hours;
+        this.remark = remark;
+        this.phoneNumber = phoneNumber;
+        this.menu = menu;
+    }
 }
