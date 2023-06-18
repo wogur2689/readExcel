@@ -25,7 +25,7 @@ public class FireBaseController {
 
         switch (value) {
             case "1":
-                fireBaseService.insertData();
+                fireBaseService.insertDataDetail();
                 break;
             case "2":
                 fireBaseService.selectData();

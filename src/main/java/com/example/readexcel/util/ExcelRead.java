@@ -15,7 +15,7 @@ public class ExcelRead {
         List<String> data = new ArrayList<>();
         try {
             // 경로에 있는 파일을 읽기
-            FileInputStream file = new FileInputStream("C:\\Users\\PC\\Desktop\\TestExcel\\Test.xlsx");
+            FileInputStream file = new FileInputStream("C:\\Users\\PC\\Desktop\\TestExcel\\FoodAndPlay_Detail.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             int rowNo = 0;

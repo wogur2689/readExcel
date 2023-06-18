@@ -24,14 +24,18 @@ public class FoodAndPlayDetail extends Common implements Serializable {
     @Column(name = "menu_name")
     private String menuName; //메뉴명
 
-    @Column(name = "price", columnDefinition = "default 0")
+    @Column(name = "price")
     private String price; //가격
 
+    @Column(name = "menuImgLink")
+    private String menuImgLink; //메뉴 이미지
+
     @Builder
-    public FoodAndPlayDetail(Long id, String foodId, String menuName, String price) {
+    public FoodAndPlayDetail(Long id, String foodId, String menuName, String price, String menuImgLink) {
         this.id = id;
         this.foodId = foodId;
         this.menuName = menuName;
         this.price = price;
+        this.menuImgLink = menuImgLink;
     }
 }
