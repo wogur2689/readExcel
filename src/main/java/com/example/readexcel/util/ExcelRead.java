@@ -4,18 +4,20 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+@Slf4j
 public class ExcelRead {
 
     public List<String> read() {
         List<String> data = new ArrayList<>();
         try {
             // 경로에 있는 파일을 읽기
-            FileInputStream file = new FileInputStream("C:\\Users\\PC\\Desktop\\TestExcel\\FoodAndPlay_Detail.xlsx");
+            FileInputStream file = new FileInputStream("C:\\Users\\PC\\Desktop\\TestExcel\\FoodAndPlay.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             int rowNo = 0;
@@ -40,7 +42,8 @@ public class ExcelRead {
                                     value = cell.getCellFormula();
                                     break;
                                 case NUMERIC:
-                                    value = cell.getNumericCellValue() + "";
+                                    log.info("너를 통과하니?");
+                                    value = (int) cell.getNumericCellValue() + "";
                                     break;
                                 case STRING:
                                     value = cell.getStringCellValue() + "";
