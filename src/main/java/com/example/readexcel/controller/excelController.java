@@ -27,6 +27,12 @@ public class excelController {
     /* 데이터 저장 */
     @GetMapping("/{value}")
     public void Menu(@RequestParam String param) {
+
+        //주석 추가 2023-08-06
+
+
+
+
         //해당 값에 따른 데이터 저장
         if(param.equals(ParamCode.CODE_MENU.getCode())) excelService.menuData(); //메뉴
         if(param.equals(ParamCode.CODE_RESTAURANT.getCode())) excelService.restaurantData(); //레스토랑
