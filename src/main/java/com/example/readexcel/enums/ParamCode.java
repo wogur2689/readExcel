@@ -15,7 +15,8 @@ public enum ParamCode {
     CODE_RESTAURANT("restaurant"),
     CODE_FOODANDPLAY("foodandplay"),
     CODE_FOODANDPLAYDETAIL("foodandplayDetail"),
-    CODE_SCHOOLTIP("schooltip");
+    CODE_SCHOOLTIP("schooltip"),
+    CODE_JINAN("jinan");
 
     private String code;
 

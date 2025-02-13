@@ -64,45 +64,44 @@ public class FireBaseService {
         }
         log.info("### 데이터 저장 완료 ###");
     }
-    public void insertDataDetail() throws Exception {
-        //1. 파이어 스토어 생성
-        Firestore db = FirestoreClient.getFirestore();
-
-        //2. 값 세팅
-        ExcelRead excelRead = new ExcelRead();
-        List<String> exceldata = excelRead.read();
-        List<String> saveData = new ArrayList<>();
-        Long j = 1L; //id
-
-        log.info("### 데이터 시작 ###");
-        log.info("### 데이터 갯수 : {} ###", exceldata.size());
-
-        for(int i = 0; i < exceldata.size(); i++) {
-            saveData.add(exceldata.get(i));
-            log.info("saveData.size() : {}", saveData.size());
-
-            //열개수만큼 데이터가 채워지면 데이터 저장
-            if(saveData.size() == 4) {
-                FoodAndPlayDetail foodAndPlayDetail = FoodAndPlayDetail.builder()
-                        .id(j)
-                        .foodId(saveData.get(0))
-                        .menuName(saveData.get(1))
-                        .price(saveData.get(2))
-                        .menuImgLink(saveData.get(3))
-                        .build();
-
-                //3. Api통신을 이용한 DB insert
-                ApiFuture<WriteResult> apiFuture = db.collection(COLLECTION_NAME2)
-                        .document(String.valueOf(j)).set(foodAndPlayDetail);
-
-                log.info(apiFuture.get().getUpdateTime().toString());
-                j++; //id값 증가
-                saveData.clear(); //리스트 초기화
-                break;
-            }
-        }
-        log.info("### 데이터 저장 완료 ###");
-    }
+//    public void insertDataDetail() throws Exception {
+//        //1. 파이어 스토어 생성
+//        Firestore db = FirestoreClient.getFirestore();
+//
+//        //2. 값 세팅
+//        ExcelRead excelRead = new ExcelRead();
+//        List<String> exceldata = excelRead.read();
+//        List<String> saveData = new ArrayList<>();
+//        Long j = 1L; //id
+//
+//        log.info("### 데이터 시작 ###");
+//        log.info("### 데이터 갯수 : {} ###", exceldata.size());
+//
+//        for(int i = 0; i < exceldata.size(); i++) {
+//            saveData.add(exceldata.get(i));
+//            log.info("saveData.size() : {}", saveData.size());
+//
+//            //열개수만큼 데이터가 채워지면 데이터 저장
+//            if(saveData.size() == 4) {
+//                FoodAndPlayDetail foodAndPlayDetail = FoodAndPlayDetail.builder()
+//                        .id(j)
+//                        .foodId(Long.valueOf(saveData.get(0)))
+//                        .menuName(saveData.get(1))
+//                        .price(Long.valueOf(saveData.get(2)))
+//                        .menuImgLink(saveData.get(3))
+//                        .build();
+//
+//                //3. Api통신을 이용한 DB insert
+//                ApiFuture<WriteResult> apiFuture = db.collection(COLLECTION_NAME2)
+//                        .document(String.valueOf(j)).set(foodAndPlayDetail);
+//
+//                log.info(apiFuture.get().getUpdateTime().toString());
+//                j++; //id값 증가
+//                saveData.clear(); //리스트 초기화
+//            }
+//        }
+//        log.info("### 데이터 저장 완료 ###");
+//    }
 
     public void selectData() throws Exception {
         //1. 파이어 스토어 생성

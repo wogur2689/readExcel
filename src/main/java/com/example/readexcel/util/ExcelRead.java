@@ -42,7 +42,6 @@ public class ExcelRead {
                                     value = cell.getCellFormula();
                                     break;
                                 case NUMERIC:
-                                    log.info("너를 통과하니?");
                                     value = (int) cell.getNumericCellValue() + "";
                                     break;
                                 case STRING:

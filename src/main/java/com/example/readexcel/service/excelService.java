@@ -33,30 +33,30 @@ public class excelService {
     private FoodAndPlayDetailRepository foodAndPlayDetailRepository;
 
     public void menuData() {
-        ExcelRead excelRead = new ExcelRead();
-        List<String> exceldata = excelRead.read();
-        List<String> saveData = new ArrayList<>();
-        Long j = 1L; //id
-
-        log.info("### 데이터 시작 ###");
-        log.info("### 데이터 갯수 : {} ###", exceldata.size());
-
-        for(int i = 0; i < exceldata.size(); i++) {
-            saveData.add(exceldata.get(i));
-
-            //레스토랑의 열개수만큼 데이터가 채워지면 데이터 저장
-            if(saveData.size() == 2) {
-                Menu menu = Menu.builder()
-                        .id(j)
-                        .food(saveData.get(0))
-                        .foodAmount(Long.valueOf(saveData.get(1)))
-                        .build();
-                menuRepository.save(menu);
-                j++; //id값 증가
-                saveData.clear(); //리스트 초기화
-            }
-        }
-        log.info("### 데이터 저장 완료 ###");
+//        ExcelRead excelRead = new ExcelRead();
+//        List<String> exceldata = excelRead.read();
+//        List<String> saveData = new ArrayList<>();
+//        Long j = 1L; //id
+//
+//        log.info("### 데이터 시작 ###");
+//        log.info("### 데이터 갯수 : {} ###", exceldata.size());
+//
+//        for(int i = 0; i < exceldata.size(); i++) {
+//            saveData.add(exceldata.get(i));
+//
+//            //레스토랑의 열개수만큼 데이터가 채워지면 데이터 저장
+//            if(saveData.size() == 2) {
+//                Menu menu = Menu.builder()
+//                        .id(j)
+//                        .food(saveData.get(0))
+//                        .foodAmount(Long.valueOf(saveData.get(1)))
+//                        .build();
+//                menuRepository.save(menu);
+//                j++; //id값 증가
+//                saveData.clear(); //리스트 초기화
+//            }
+//        }
+//        log.info("### 데이터 저장 완료 ###");
     }
 
     public void restaurantData() {
@@ -136,9 +136,9 @@ public class excelService {
             if(saveData.size() == 3) {
                 FoodAndPlayDetail foodAndPlayDetail = FoodAndPlayDetail.builder()
                         .id(j)
-                        .foodId(saveData.get(0))
+                        .foodId(Long.valueOf(saveData.get(0)))
                         .menuName(saveData.get(1))
-                        .price(saveData.get(2))
+                        .price(Long.valueOf(saveData.get(2)))
                         .build();
                 foodAndPlayDetailRepository.save(foodAndPlayDetail);
                 j++; //id값 증가

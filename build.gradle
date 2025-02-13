@@ -30,6 +30,9 @@ dependencies {
     /* sqlLite */
     runtimeOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
 
+    /* mysql */
+    runtimeOnly 'mysql:mysql-connector-java'
+
     /* excel */
     implementation 'org.apache.poi:poi:5.2.2'
     implementation 'org.apache.poi:poi-ooxml:5.2.2'

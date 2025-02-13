@@ -33,12 +33,12 @@ public class Restaurant extends Common implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber; //식당전화번호
 
-    @ManyToOne
-    @JoinColumn(name = "menu_no")
-    private Menu menu; //하나의 식당에는 여러개의 음식이 있음.
+//    @ManyToOne
+//    @JoinColumn(name = "menu_no")
+//    private Menu menu; //하나의 식당에는 여러개의 음식이 있음.
 
     @Builder
-    public Restaurant(Long id, String name, String address, String cook, String opening_hours, String remark, String phoneNumber, Menu menu) {
+    public Restaurant(Long id, String name, String address, String cook, String opening_hours, String remark, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -46,6 +46,5 @@ public class Restaurant extends Common implements Serializable {
         this.opening_hours = opening_hours;
         this.remark = remark;
         this.phoneNumber = phoneNumber;
-        this.menu = menu;
     }
 }
