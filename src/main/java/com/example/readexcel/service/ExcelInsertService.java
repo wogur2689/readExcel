@@ -56,6 +56,28 @@ public class ExcelInsertService {
         fileInputStream.close();
     }
 
+    public void processExcelJinanDataJdbc() throws Exception {
+        List<Menu> menus = new ArrayList<>(); //메뉴
+
+        FileInputStream fileInputStream = new FileInputStream(new File("C:/excel/test.xlsx"));
+        Workbook workbook = new XSSFWorkbook(fileInputStream);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        int batchSize = 10000; //1만건 처리
+
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) continue; //헤더 스킵
+
+            String name = getCellValue(row.getCell(0));
+            String menuCreateBy = getCellValue(row.getCell(1));
+
+
+        }
+
+        workbook.close();
+        fileInputStream.close();
+    }
+
 
     //회원 및 카드 부터 insert
     // 📌 빈 셀을 예외 처리하는 메서드 추가
