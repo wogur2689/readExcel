@@ -2,19 +2,23 @@ package com.example.readexcel.service;
 
 import com.example.readexcel.entity.Menu;
 import com.example.readexcel.repository.MenuRepository;
+import io.opencensus.metrics.export.TimeSeries;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.poifs.crypt.dsig.services.TimeStampHttpClient;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ExcelInsertService {
     private final MenuRepository menuRepository;
+    private final JdbcTemplate jdbcTemplate;
     private final EntityManager entityManager;
 
     //저장할 repository
@@ -56,22 +61,35 @@ public class ExcelInsertService {
         fileInputStream.close();
     }
 
+    @Transactional
     public void processExcelJinanDataJdbc() throws Exception {
-        List<Menu> menus = new ArrayList<>(); //메뉴
-
+        List<Object[]> batchArgs = new ArrayList<>(); //메뉴
         FileInputStream fileInputStream = new FileInputStream(new File("C:/excel/test.xlsx"));
         Workbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet sheet = workbook.getSheetAt(0);
 
-        int batchSize = 10000; //1만건 처리
+        int batchSize = 20000; //1만건 처리
+        String sql = "INSERT INTO menu (name, menu_create_by, created_at) VALUES (?, ?, ?)";
+        Timestamp now = new Timestamp(System.currentTimeMillis()); //타임스탬프
+
 
         for (Row row : sheet) {
             if (row.getRowNum() == 0) continue; //헤더 스킵
 
             String name = getCellValue(row.getCell(0));
             String menuCreateBy = getCellValue(row.getCell(1));
+            batchArgs.add(new Object[]{name, menuCreateBy, now});
 
+            // batchSize마다 Insert 실행
+            if (batchArgs.size() == batchSize) {
+                jdbcTemplate.batchUpdate(sql, batchArgs);
+                batchArgs.clear();
+            }
+        }
 
+        // 남은 데이터 처리
+        if (!batchArgs.isEmpty()) {
+            jdbcTemplate.batchUpdate(sql, batchArgs);
         }
 
         workbook.close();

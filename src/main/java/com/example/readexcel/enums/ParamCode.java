@@ -16,7 +16,8 @@ public enum ParamCode {
     CODE_FOODANDPLAY("foodandplay"),
     CODE_FOODANDPLAYDETAIL("foodandplayDetail"),
     CODE_SCHOOLTIP("schooltip"),
-    CODE_JINAN("jinan");
+    CODE_JINAN("jinan"),
+    CODE_JINAN_JDBC("jinan_jdbc");
 
     private String code;
 

@@ -37,7 +37,8 @@ public class excelController {
         if(param.equals(ParamCode.CODE_RESTAURANT.getCode())) excelService.restaurantData(); //레스토랑
         if(param.equals(ParamCode.CODE_FOODANDPLAY.getCode())) excelService.foodAndPlayData(); //먹거리 & 놀거리
         if(param.equals(ParamCode.CODE_FOODANDPLAYDETAIL.getCode())) excelService.foodAndPlayDetailData(); //먹거리 & 놀거리 상세
-        if(param.equals(ParamCode.CODE_JINAN.getCode())) excelInsertService.processExcelJinanData();
+        if(param.equals(ParamCode.CODE_JINAN.getCode())) excelInsertService.processExcelJinanData(); //JPA 대량 데이터 insert
+        if(param.equals(ParamCode.CODE_JINAN_JDBC.getCode())) excelInsertService.processExcelJinanDataJdbc(); //JDBC Batch를 통한 대량 데이터 insert
         //if(param.equals(ParamCode.CODE_SCHOOLTIP.getCode())) excelService.menuData(); //꿀팁
     }
 
